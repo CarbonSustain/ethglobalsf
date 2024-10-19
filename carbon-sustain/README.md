@@ -1,3 +1,18 @@
+1. To run the code, use npm start, but to send transactions and receive messages, you need to first execute node src/index.js from the broadcast-bot directory.
+
+2. The current code contains:
+const cstTokenAddress = '0xEC3De877136145D53172f0a8A6E40cc2eA142104'; // CST token contract address
+const recipientAddress = '0x218E85782dcD225c6646Df190dAF627c21374BA7'; // Test recipient address
+The cstTokenAddress refers to the actual CST token contract that was deployed, and the recipientAddress is a test account. However, if you implement login using Alchemy, the address obtained from the logged-in account should be used as the recipientAddress.
+
+3. The transaction is handled via MetaMask, as implementing the function with WalletConnect has proven difficult, so only MetaMask is being used for now.
+
+4. The rest of the files are unchanged from the initial React project setup, so there’s no need to modify them unless a front-end is being developed.
+
+TODO:
+1. We still haven’t implemented the functionality to purchase tokens in a 50:50 blend of two coins, so that needs to be done.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
