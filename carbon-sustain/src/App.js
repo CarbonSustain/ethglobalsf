@@ -30,6 +30,21 @@ const App = () => {
             console.log('Transaction confirmed in block:', tx.blockNumber); // Log the block number
 
             setMessage(`Successfully transferred ${amount} CST to ${recipientAddress}.`);
+
+            // Send transaction to the broadcast-bot
+            console.log('Sending transaction details to server...');
+            await fetch('http://localhost:3001/send-transaction', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    hash: tx.hash,
+                    from: tx.from,
+                    to: recipientAddress,
+                    value: amount.toString(),
+                    timestamp: new Date().toISOString()
+                })
+            });
+            console.log('Transaction details sent to server.');
         } catch (error) {
             console.error('Error transferring tokens:', error);
             setMessage(`Error transferring tokens: ${error.message}`);
