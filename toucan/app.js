@@ -1,17 +1,38 @@
 require("dotenv").config();
 const { ethers } = require("ethers");
+const ToucanModule = require("toucan-sdk");
+const ToucanClient = ToucanModule.default;
 
 // Constants for the environment
 const SIGNER_PRIVATE_KEY = process.env.SIGNER_PRIVATE_KEY;
 const BCT_CONTRACT_ADDRESS = process.env.BCT_CONTRACT_ADDRESS;
+const network = process.env.NETWORK;
 
 const INFURA_URL = `https://${network}.infura.io/v3/${process.env.INFURA_API_KEY}`;
 console.log("INFURA_URL");
 console.log(INFURA_URL);
 
 // Connect to the Polygon network
-const provider = new ethers.providers.JsonRpcProvider(INFURA_URL);
+const provider = new ethers.JsonRpcProvider(INFURA_URL);
 const wallet = new ethers.Wallet(SIGNER_PRIVATE_KEY, provider);
+//const toucan = new ToucanClient("alfajores", provider, wallet);
+const toucan = new ToucanClient("alfajores", provider, wallet);
+
+async function getToucanData() {
+  nctPrice = await toucan.fetchTokenPriceOnDex("NCT");
+
+  const nct = await toucan.getPoolContract("NCT");
+  const tco2 = await toucan.getTCO2Contract(tco2Address);
+  const registry = await toucan.getRegistryContract();
+  const remainingTCO2 = await nct.tokenBalances(tco2Address);
+
+  console.log("nctPrice " + nctPrice);
+  console.log("nct " + nct);
+  console.log("registry " + registry);
+  console.log("remainingTCO2 " + remainingTCO2);
+}
+
+getToucanData();
 
 // BCT Token ABI (Minimum ABI for interacting with ERC20 tokens)
 const BCT_ABI = [
@@ -55,6 +76,15 @@ async function purchaseBCT(sellerAddress, amountInBCT) {
   }
 }
 
+const getBalance = async () => {
+  try {
+    const balance = await wallet.getBalance(); // Fetch balance in Wei
+    console.log(`Wallet balance: ${ethers.utils.formatEther(balance)} ETH`);
+  } catch (error) {
+    console.error("Error fetching balance:", error);
+  }
+};
+
 async function testConnection() {
   try {
     const blockNumber = await provider.getBlockNumber();
@@ -68,9 +98,8 @@ async function testConnection() {
 }
 
 // Example usage
-const sellerAddress = "0xSellerAddress"; // Address of the entity selling the BCT
 const amountInBCT = 10; // How much BCT you want to buy
 
-purchaseBCT(sellerAddress, amountInBCT);
+purchaseBCT(BCT_CONTRACT_ADDRESS, amountInBCT);
 
 testConnection();
