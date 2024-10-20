@@ -7,19 +7,19 @@ import {
 } from "@account-kit/react";
 
 import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
+import { ethers,formatEther } from "ethers";
 import { Client } from "@xmtp/xmtp-js";
-
-//const { wrapProvider } = require("@celo-tools/celo-ethers-wrapper");
-//const provider = new ethers.providers.JsonRpcProvider("https://alfajores-forno.celo-testnet.org");
-//const celoProvider = wrapProvider(provider);
 
 export default function Home() {
   const user = useUser();
   const { openAuthModal } = useAuthModal();
   const signerStatus = useSignerStatus();
   const { logout } = useLogout();
-  // Add the purchaseCST function here
+  const [client, setClient] = useState(null);
+  const [messages, setMessages] = useState([]);
+
+  const PRIVATE_KEY = "f44121975ad0b84e4b352bf4d26a061fa89415ba50d963282ec7f5cc0e7a58fa";
+
   const purchaseCST = async () => {
     try {
       // Add logic for purchasing CarbonSustain Token (CST)
@@ -34,9 +34,18 @@ export default function Home() {
     }
   };
 
-  const [client, setClient] = useState(null);
-  const [messages, setMessages] = useState([]);
+  async function checkWalletBalance(wallet) {
+    try {
+        // Check your wallet balance
+        const balance = await wallet.getBalance();
+        console.log(`Wallet balance: ${formatEther(balance)} MATIC`);
 
+        // Now you can perform actions like sending transactions or interacting with contracts
+    } catch (error) {
+        console.error('Error:', error);
+    }
+  }
+  
   // Initialize XMTP
   const initXMTP = async () => {
     console.log("initXMTP 1");
@@ -44,26 +53,21 @@ export default function Home() {
     const INFURA_URL = "https://sepolia.infura.io/v3/a0197779450c4dd39c77477a591aa247";
     const provider = new ethers.JsonRpcProvider(INFURA_URL);
     console.log("initXMTP 2");
-
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []); // Request user's wallet
-    const signer = provider.getSigner();
+    const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+    checkWalletBalance(wallet);
 
     console.log("initXMTP 3");
-
     // Initialize XMTP client
-    const xmtp = await Client.create(signer);
+    const xmtp = await Client.create(wallet);
     setClient(xmtp);
-
     console.log("initXMTP 4");
 
     // Fetch or listen to new messages
     const conversations = await xmtp.conversations.list();
     if (conversations.length > 0) {
       console.log("initXMTP 5");
-      sendMessage(conversation)
-
       const conversation = conversations[0];
+      sendMessage(conversation);
       // Subscribe to incoming messages
       const stream = await conversation.streamMessages();
       stream.subscribe((msg) => {
