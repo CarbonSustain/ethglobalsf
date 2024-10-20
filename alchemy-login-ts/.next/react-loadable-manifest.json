@@ -1,0 +1,152 @@
+{
+  "node_modules/@account-kit/smart-contracts/dist/esm/src/msca/plugins/session-key/extension.js -> ./debug-session-key-bytecode.js": {
+    "id": "node_modules/@account-kit/smart-contracts/dist/esm/src/msca/plugins/session-key/extension.js -> ./debug-session-key-bytecode.js",
+    "files": []
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/ajs-destination": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/ajs-destination",
+    "files": [
+      "static/chunks/ajs-destination.js"
+    ]
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/legacy-video-plugins": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/legacy-video-plugins",
+    "files": [
+      "static/chunks/legacyVideos.js"
+    ]
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/remote-middleware": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/remote-middleware",
+    "files": [
+      "static/chunks/remoteMiddleware.js"
+    ]
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/routing-middleware": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/routing-middleware",
+    "files": [
+      "static/chunks/tsub-middleware.js"
+    ]
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/schema-filter": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/browser/index.js -> ../plugins/schema-filter",
+    "files": [
+      "static/chunks/schemaFilter.js"
+    ]
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/core/analytics/index.js -> ../../plugins/middleware": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/core/analytics/index.js -> ../../plugins/middleware",
+    "files": []
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/core/analytics/index.js -> ../auto-track": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/core/analytics/index.js -> ../auto-track",
+    "files": [
+      "static/chunks/auto-track.js"
+    ]
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/core/analytics/index.js -> ../query-string": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/core/analytics/index.js -> ../query-string",
+    "files": [
+      "static/chunks/queryString.js"
+    ]
+  },
+  "node_modules/@segment/analytics-next/dist/pkg/plugins/legacy-video-plugins/index.js -> @segment/analytics.js-video-plugins/dist/index.umd.js": {
+    "id": "node_modules/@segment/analytics-next/dist/pkg/plugins/legacy-video-plugins/index.js -> @segment/analytics.js-video-plugins/dist/index.umd.js",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_segment_analytics_js-video-plugins_dist_index_umd_js.js"
+    ]
+  },
+  "node_modules/@turnkey/api-key-stamper/dist/index.mjs -> ./nodecrypto.mjs": {
+    "id": "node_modules/@turnkey/api-key-stamper/dist/index.mjs -> ./nodecrypto.mjs",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_turnkey_api-key-stamper_dist_nodecrypto_mjs.js"
+    ]
+  },
+  "node_modules/@turnkey/api-key-stamper/dist/index.mjs -> ./purejs.mjs": {
+    "id": "node_modules/@turnkey/api-key-stamper/dist/index.mjs -> ./purejs.mjs",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_turnkey_api-key-stamper_dist_purejs_mjs.js"
+    ]
+  },
+  "node_modules/@turnkey/api-key-stamper/dist/index.mjs -> ./webcrypto.mjs": {
+    "id": "node_modules/@turnkey/api-key-stamper/dist/index.mjs -> ./webcrypto.mjs",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_turnkey_api-key-stamper_dist_webcrypto_mjs.js"
+    ]
+  },
+  "node_modules/@walletconnect/modal/dist/index.js -> @walletconnect/modal-ui": {
+    "id": "node_modules/@walletconnect/modal/dist/index.js -> @walletconnect/modal-ui",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_walletconnect_modal-ui_dist_index_js.js"
+    ]
+  },
+  "node_modules/@xmtp/xmtp-js/node_modules/viem/_esm/actions/public/call.js -> ../../utils/ccip.js": {
+    "id": "node_modules/@xmtp/xmtp-js/node_modules/viem/_esm/actions/public/call.js -> ../../utils/ccip.js",
+    "files": []
+  },
+  "node_modules/@xmtp/xmtp-js/node_modules/viem/_esm/utils/rpc/webSocket.js -> isows": {
+    "id": "node_modules/@xmtp/xmtp-js/node_modules/viem/_esm/utils/rpc/webSocket.js -> isows",
+    "files": []
+  },
+  "node_modules/@xmtp/xmtp-js/node_modules/viem/_esm/utils/signature/recoverPublicKey.js -> @noble/curves/secp256k1": {
+    "id": "node_modules/@xmtp/xmtp-js/node_modules/viem/_esm/utils/signature/recoverPublicKey.js -> @noble/curves/secp256k1",
+    "files": []
+  },
+  "node_modules/alchemy-sdk/dist/esm/index-893f7c9e.js -> ./alchemy-provider-ac155d2c.js": {
+    "id": "node_modules/alchemy-sdk/dist/esm/index-893f7c9e.js -> ./alchemy-provider-ac155d2c.js",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_alchemy-sdk_dist_esm_alchemy-provider-ac155d2c_js.js"
+    ]
+  },
+  "node_modules/alchemy-sdk/dist/esm/index-893f7c9e.js -> ./alchemy-websocket-provider-d78b64af.js": {
+    "id": "node_modules/alchemy-sdk/dist/esm/index-893f7c9e.js -> ./alchemy-websocket-provider-d78b64af.js",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_alchemy-sdk_dist_esm_alchemy-websocket-provider-d78b64af_js.js"
+    ]
+  },
+  "node_modules/viem/_esm/actions/public/call.js -> ../../utils/ccip.js": {
+    "id": "node_modules/viem/_esm/actions/public/call.js -> ../../utils/ccip.js",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_viem__esm_utils_ccip_js.js"
+    ]
+  },
+  "node_modules/viem/_esm/utils/rpc/webSocket.js -> isows": {
+    "id": "node_modules/viem/_esm/utils/rpc/webSocket.js -> isows",
+    "files": []
+  },
+  "node_modules/viem/_esm/utils/signature/recoverPublicKey.js -> @noble/curves/secp256k1": {
+    "id": "node_modules/viem/_esm/utils/signature/recoverPublicKey.js -> @noble/curves/secp256k1",
+    "files": []
+  },
+  "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/coinbaseWallet.js -> @coinbase/wallet-sdk": {
+    "id": "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/coinbaseWallet.js -> @coinbase/wallet-sdk",
+    "files": []
+  },
+  "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/coinbaseWallet.js -> cbw-sdk": {
+    "id": "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/coinbaseWallet.js -> cbw-sdk",
+    "files": []
+  },
+  "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/metaMask.js -> @metamask/sdk": {
+    "id": "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/metaMask.js -> @metamask/sdk",
+    "files": []
+  },
+  "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/safe.js -> @safe-global/safe-apps-provider": {
+    "id": "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/safe.js -> @safe-global/safe-apps-provider",
+    "files": []
+  },
+  "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/safe.js -> @safe-global/safe-apps-sdk": {
+    "id": "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/safe.js -> @safe-global/safe-apps-sdk",
+    "files": []
+  },
+  "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/walletConnect.js -> @walletconnect/ethereum-provider": {
+    "id": "node_modules/wagmi/node_modules/@wagmi/connectors/dist/esm/walletConnect.js -> @walletconnect/ethereum-provider",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_wagmi_node_modules_walletconnect_ethereum-provider_dist_index_es_js.js"
+    ]
+  },
+  "node_modules/wagmi/node_modules/@walletconnect/ethereum-provider/dist/index.es.js -> @walletconnect/modal": {
+    "id": "node_modules/wagmi/node_modules/@walletconnect/ethereum-provider/dist/index.es.js -> @walletconnect/modal",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_walletconnect_modal_dist_index_js.js"
+    ]
+  }
+}

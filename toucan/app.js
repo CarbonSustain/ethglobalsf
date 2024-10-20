@@ -1,5 +1,7 @@
 require("dotenv").config();
 const { ethers } = require("ethers");
+const { Utils } = require("alchemy-sdk");
+
 const ToucanModule = require("toucan-sdk");
 const ToucanClient = ToucanModule.default;
 
@@ -8,57 +10,62 @@ const SIGNER_PRIVATE_KEY = process.env.SIGNER_PRIVATE_KEY;
 const BCT_CONTRACT_ADDRESS = process.env.BCT_CONTRACT_ADDRESS;
 const network = process.env.NETWORK;
 
-const INFURA_URL = `https://${network}.infura.io/v3/${process.env.INFURA_API_KEY}`;
+//const INFURA_URL = `https://${network}.infura.io/v3/${process.env.INFURA_API_KEY}`;
+const INFURA_URL =
+  "https://celo-alfajores.infura.io/v3/a0197779450c4dd39c77477a591aa247";
+
 console.log("INFURA_URL");
 console.log(INFURA_URL);
 
 // Connect to the Polygon network
 const provider = new ethers.JsonRpcProvider(INFURA_URL);
+console.log("Provider 1");
+
+console.log("Provider 2");
+
 const wallet = new ethers.Wallet(SIGNER_PRIVATE_KEY, provider);
-//const toucan = new ToucanClient("alfajores", provider, wallet);
-const toucan = new ToucanClient("alfajores", provider, wallet);
-
-async function getToucanData() {
-  nctPrice = await toucan.fetchTokenPriceOnDex("NCT");
-
-  const nct = await toucan.getPoolContract("NCT");
-  const tco2 = await toucan.getTCO2Contract(tco2Address);
-  const registry = await toucan.getRegistryContract();
-  const remainingTCO2 = await nct.tokenBalances(tco2Address);
-
-  console.log("nctPrice " + nctPrice);
-  console.log("nct " + nct);
-  console.log("registry " + registry);
-  console.log("remainingTCO2 " + remainingTCO2);
-}
-
-getToucanData();
-
-// BCT Token ABI (Minimum ABI for interacting with ERC20 tokens)
-const BCT_ABI = [
-  // Transfer
-  "function transfer(address to, uint amount) external returns (bool)",
-  // Approve
-  "function approve(address spender, uint amount) external returns (bool)",
-  // Allowance
-  "function allowance(address owner, address spender) external view returns (uint)",
-  // Balance of
-  "function balanceOf(address account) external view returns (uint)",
-  // Decimals
-  "function decimals() view returns (uint8)",
-];
-
-// BCT Contract instance
-const bctContract = new ethers.Contract(BCT_CONTRACT_ADDRESS, BCT_ABI, wallet);
+console.log("Provider 3");
 
 // Example: Purchasing BCT (Sending MATIC to a seller's address to get BCT)
-async function purchaseBCT(sellerAddress, amountInBCT) {
+async function getToucanData() {
+  await provider
+    .getBlockNumber()
+    .then((blockNumber) => {
+      console.log("Current block number:", blockNumber);
+    })
+    .catch((error) => {
+      console.error("Error fetching block number:", error);
+    });
+
+  console.log("Provider 4");
+
+  const toucan = new ToucanClient(network, provider, wallet);
+  //const toucan = new ToucanClient(wallet);
+  //const toucan = new ToucanClient(provider);
+  const weiAmt = Utils.parseEther("0.001");
+
+  console.log("Provider 5");
+  const tco2addresses = await toucan.redeemAuto("NCT", weiAmt);
+  console.log("tco2addresses " + tco2addresses);
+
+  await toucan.retire(Utils.parseEther("0.001"), tco2addresses[0].address);
+}
+
+async function getToucanWei() {
+  try {
+    const valueInWei = Utils.parseEther("0.001");
+    console.log("Value in wei:", valueInWei.toString());
+  } catch (error) {
+    console.error("Error in getToucanData:", error);
+  }
+}
+
+async function purchaseBCT(bctContract, amountInBCT) {
   try {
     // Check your wallet balance before purchasing
-    const balance = await wallet.getBalance();
-    console.log(
-      `Your MATIC balance: ${ethers.utils.formatEther(balance)} MATIC`
-    );
+    const balance = await provider.getBalance(wallet.address);
+
+    console.log(`Your Celo balance: ${ethers.utils.formatEther(balance)} Celo`);
 
     // Calculate BCT amount in decimals
     const decimals = await bctContract.decimals();
@@ -97,9 +104,38 @@ async function testConnection() {
   }
 }
 
-// Example usage
-const amountInBCT = 10; // How much BCT you want to buy
+// BCT Token ABI (Minimum ABI for interacting with ERC20 tokens)
+const BCT_ABI = [
+  // Transfer
+  "function transfer(address to, uint amount) external returns (bool)",
+  // Approve
+  "function approve(address spender, uint amount) external returns (bool)",
+  // Allowance
+  "function allowance(address owner, address spender) external view returns (uint)",
+  // Balance of
+  "function balanceOf(address account) external view returns (uint)",
+  // Decimals
+  "function decimals() view returns (uint8)",
+];
 
-purchaseBCT(BCT_CONTRACT_ADDRESS, amountInBCT);
+async function main() {
+  getToucanWei();
 
-testConnection();
+  getToucanData();
+
+  // BCT Contract instance
+  const bctContract = new ethers.Contract(
+    BCT_CONTRACT_ADDRESS,
+    BCT_ABI,
+    wallet
+  );
+  const amountInBCT = 0.001;
+
+  getToucanData();
+
+  //await purchaseBCT(bctContract, amountInBCT);
+
+  //await testConnection();
+}
+
+main();
